@@ -5,8 +5,6 @@
 
 using namespace stl;
 
-void stlTest(){
-    cout  << " modules/constKeyword test function" << endl;
-}
+void stlTest();˚
 
 #endif

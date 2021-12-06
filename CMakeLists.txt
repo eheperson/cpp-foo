@@ -51,21 +51,3 @@ endif()
 # so that we will find exampleLib.h
 # (paths to search for include files)
 target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
-
-
-
-# Installing - Begin -----------------------------------------------------------------------------
-#
-# Installation location 
-# The CMake variable CMAKE_INSTALL_PREFIX is used to determine the root of where the files will be installed. 
-# If using the cmake --install command, the installation prefix can be overridden via the --prefix argument. 
-#       For example: cmake --install . --prefix "/home/myuser/installdir"
-# set(CMAKE_INSTALL_PREFIX ./app/${PROJECT_NAME})
-# #
-# # Installing rules for App  :
-# install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-# install(FILES "${PROJECT_BINARY_DIR}/cppFooConfig"
-#   DESTINATION include
-# )
-# Installing - End -----------------------------------------------------------------------------
-
