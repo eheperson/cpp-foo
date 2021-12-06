@@ -16,6 +16,8 @@ set(CMAKE_BUILD_TYPE Debug)
 
 # Set some required variables 
 set(MODULES_DIR ${CMAKE_SOURCE_DIR}/modules)
+set(MODULES_LIST "")
+set(MODULES_NAME_LIST "")
 
 # set the project name with version
 # ${PROJECT_NAME}
@@ -36,14 +38,32 @@ option(BUILD_CONSTKEYWORD "Build cpp const keyword module tutorial files" ON)
 
 if(BUILD_SDL)
     add_subdirectory(${MODULES_DIR}/stl)
+    # add_executable(stl ${MODULES_DIR}/stl/main.cpp)
+    set(STL_SRC ${MODULES_DIR}/stl/main.cpp)
+    list(APPEND MODULES_LIST ${STL_SRC})
+    set(STL_MODULE_NAME "stl")
+    list(APPEND MODULES_NAME_LIST ${STL_MODULE_NAME})
+    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/modules")
 endif()
 
 if(BUILD_FILEOPERATIONS)
     add_subdirectory(${MODULES_DIR}/fileOperations)
+    # add_executable(fileOperations ${MODULES_DIR}/fileOperations/main.cpp)
+    set(FILEOPERATIONS_SRC ${MODULES_DIR}/fileOperations/main.cpp)
+    list(APPEND MODULES_LIST ${FILEOPERATIONS_SRC})
+    set(FILEOPERATIONS_MODULE_NAME "fileOperations")
+    list(APPEND MODULES_NAME_LIST ${FILEOPERATIONS_MODULE_NAME})
+    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/modules")
 endif()
 
 if(BUILD_CONSTKEYWORD)
     add_subdirectory(${MODULES_DIR}/constKeyword)
+    # add_executable(constKeyword ${MODULES_DIR}/constKeyword/main.cpp)
+    set(CONSTKEYWORD_SRC ${MODULES_DIR}/constKeyword/main.cpp)
+    list(APPEND MODULES_LIST ${CONSTKEYWORD_SRC})
+    set(CONSTKEYWORD_MODULE_NAME "constKeyword")
+    list(APPEND MODULES_NAME_LIST ${CONSTKEYWORD_MODULE_NAME})
+    list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/modules")
 endif()
 
 
@@ -53,6 +73,14 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
 
 
+list(LENGTH MODULES_LIST lenModulesList)
+math(EXPR lenModulesNameList "${lenModulesList} - 1")
+foreach(i RANGE ${lenModulesNameList})
+    list(GET MODULES_LIST ${i} modulesIndex)
+    list(GET MODULES_NAME_LIST ${i} modulesNameIndex)
+    message(STATUS "${modulesNameIndex}  --  ${modulesIndex}")
+    add_executable(${modulesNameIndex} ${modulesIndex})
+endforeach()
 
 # Installing - Begin -----------------------------------------------------------------------------
 #
