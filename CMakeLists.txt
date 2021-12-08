@@ -31,8 +31,10 @@ add_executable(${PROJECT_NAME} main.cpp)
 # make the 'xxx' library optional
 # this option will be displayed in the cmake-gui and ccmake with a default value of ON
 option(BUILD_SDL "Build cpp stl module tutorial files" ON)
-option(BUILD_FILEOPERATIONS "Build cpp file operations module tutorial files" ON)
-option(BUILD_CONSTKEYWORD "Build cpp const keyword module tutorial files" ON)
+option(BUILD_FILEOPERATIONS "Build cpp file operations module tutorial files" OFF)
+option(BUILD_CONST "Build cpp const keyword module tutorial files" ON)
+option(BUILD_STRUCT "Build cpp structures module tutorial files" ON)
+option(BUILD_TEMPLATES "Build cpp templates module tutorial files" ON)
 
 if(BUILD_SDL)
     add_subdirectory(${MODULES_DIR}/stl)
@@ -42,8 +44,16 @@ if(BUILD_FILEOPERATIONS)
     add_subdirectory(${MODULES_DIR}/fileOperations)
 endif()
 
-if(BUILD_CONSTKEYWORD)
-    add_subdirectory(${MODULES_DIR}/constKeyword)
+if(BUILD_CONST)
+    add_subdirectory(${MODULES_DIR}/const)
+endif()
+
+if(BUILD_STRUCT)
+    add_subdirectory(${MODULES_DIR}/struct)
+endif()
+
+if(BUILD_TEMPLATES)
+    add_subdirectory(${MODULES_DIR}/templates)
 endif()
 
 

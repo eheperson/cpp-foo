@@ -53,4 +53,8 @@ void writeToFile(string fName, string str);
 
 char readFromFile(string fName);
 
+void writeFormattedText(string fName, string text);
+
+void vogonPoem();
+
 #endif

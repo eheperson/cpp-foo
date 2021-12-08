@@ -2,7 +2,7 @@ apt-get install cowsay
 cowsay "hello motherfucker"
 
 buildDIR="./build"
-if [ ! -d "$buildDIR" ]; then
+if [ ! -d ${buildDIR} ]; then
   mkdir ${buildDIR}
 else
   rm -r ${buildDIR}

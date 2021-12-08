@@ -1,0 +1,13 @@
+Expression      What is evaluated                               Equivalent |
+---------------------------------------------------------------------------|
+a.b	            Member b of object a	                                   |
+a->b	        Member b of object pointed to by a	            (*a).b     |
+*a.b	        Value pointed to by member b of object a	    *(a.b)     |
+
+
+
+Resources : 
+    programiz.com
+    geeksforgeeks.com
+    tutorialspoint.com
+    cplusplus.com
