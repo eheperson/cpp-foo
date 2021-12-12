@@ -17,6 +17,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 # Set some required variables 
 set(MODULES_DIR ${CMAKE_SOURCE_DIR}/modules)
+set(LAB_DIR ${CMAKE_SOURCE_DIR}/lab)
 
 # set the project name with version
 # ${PROJECT_NAME}
@@ -65,7 +66,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
 
 #--------------------------------------------------------------------
 #-------------- SDL2 Submodules Settings
-#
 add_executable(sdlTest src/sdlTest.cpp)
 #
 #--------------------------------------------------------------------
@@ -73,6 +73,41 @@ add_subdirectory (src)
 #
 target_link_libraries(sdlTest PUBLIC sdlTestLib )
 #
+#--------------------------------------------------------------------
+#-------------- Particle Simulator 
+add_executable(simulatorEHE ${LAB_DIR}/particleSimulator/main.cpp)
+add_executable(colorAnimator ${LAB_DIR}/particleSimulator/colorAnimator.cpp)
+add_executable(particleExample ${LAB_DIR}/particleSimulator/particleExample.cpp)
+add_executable(particleExample2 ${LAB_DIR}/particleSimulator/particleExample2.cpp)
+add_executable(particleMotionBasic ${LAB_DIR}/particleSimulator/particleMotionBasic.cpp)
+add_executable(singlePixel ${LAB_DIR}/particleSimulator/singlePixel.cpp)
+#
+add_subdirectory (${LAB_DIR}/particleSimulator)
+#
+target_link_libraries(simulatorEHE PUBLIC screen)
+target_link_libraries(simulatorEHE PUBLIC particle)
+target_link_libraries(simulatorEHE PUBLIC swarm)
+#
+target_link_libraries(colorAnimator PUBLIC screen)
+target_link_libraries(colorAnimator PUBLIC particle)
+target_link_libraries(colorAnimator PUBLIC swarm)
+#
+target_link_libraries(particleExample PUBLIC screen)
+target_link_libraries(particleExample PUBLIC particle)
+target_link_libraries(particleExample PUBLIC swarm)
+#
+target_link_libraries(particleExample2 PUBLIC screen)
+target_link_libraries(particleExample2 PUBLIC particle)
+target_link_libraries(particleExample2 PUBLIC swarm)
+#
+target_link_libraries(particleMotionBasic PUBLIC screen)
+target_link_libraries(particleMotionBasic PUBLIC particle)
+target_link_libraries(particleMotionBasic PUBLIC swarm)
+#
+target_link_libraries(singlePixel PUBLIC screen)
+target_link_libraries(singlePixel PUBLIC particle)
+target_link_libraries(singlePixel PUBLIC swarm)
+
 #--------------------------------------------------------------------
 #-------------- DOWNLOAD ALL THE SUBMODULES
 # first open terminal and type : 
