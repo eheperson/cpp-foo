@@ -1,6 +1,9 @@
 # build dir
 **/build
 
+# external dir
+**/external
+
 # Prerequisites
 *.d
 

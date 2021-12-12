@@ -2,10 +2,17 @@ apt-get install cowsay
 cowsay "hello motherfucker"
 
 buildDIR="./build"
+
+# delete and re-create build directory at every time
+# if [ ! -d ${buildDIR} ]; then
+#   mkdir ${buildDIR}
+# else
+#   rm -r ${buildDIR}
+#   mkdir ${buildDIR}
+# fi
+
+# create build dir if dows not exists
 if [ ! -d ${buildDIR} ]; then
-  mkdir ${buildDIR}
-else
-  rm -r ${buildDIR}
   mkdir ${buildDIR}
 fi
 
@@ -33,7 +40,7 @@ echo " Build Begin"
 echo ""
 
 cd build
-cmake --build .
+cmake --build . --verbose  
 # or 
 # mingw32-make
 cd ..
