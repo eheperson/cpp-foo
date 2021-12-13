@@ -6,8 +6,8 @@
 # #
 # target_include_directories(ehe-lib PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 # #
-# target_include_directories(ehe-lib PUBLIC libs/sdl/include)
-# target_link_directories(ehe-lib PUBLIC libs/sdl)
+# target_include_directories(ehe-lib PUBLIC external/sdl2/include)
+# target_link_directories(ehe-lib PUBLIC external/sdl2)
 # target_link_libraries(ehe-lib PUBLIC SDL2main SDL2 SDL2-static)
 # #
 # #
@@ -18,8 +18,8 @@ add_library(screen
 #
 target_include_directories(screen PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 #
-target_include_directories(screen PUBLIC libs/sdl/include)
-target_link_directories(screen PUBLIC libs/sdl)
+target_include_directories(screen PUBLIC external/sdl2/include)
+target_link_directories(screen PUBLIC external/sdl2)
 target_link_libraries(screen PUBLIC SDL2main SDL2 SDL2-static)
 #
 #
@@ -30,8 +30,8 @@ add_library(particle
 #
 target_include_directories(particle PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 #
-target_include_directories(particle PUBLIC libs/sdl/include)
-target_link_directories(particle PUBLIC libs/sdl)
+target_include_directories(particle PUBLIC external/sdl2/include)
+target_link_directories(particle PUBLIC external/sdl2)
 target_link_libraries(particle PUBLIC SDL2main SDL2 SDL2-static)
 #
 #
@@ -42,8 +42,8 @@ add_library(swarm
 #
 target_include_directories(swarm PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
 #
-target_include_directories(swarm PUBLIC libs/sdl/include)
-target_link_directories(swarm PUBLIC libs/sdl)
+target_include_directories(swarm PUBLIC external/sdl2/include)
+target_link_directories(swarm PUBLIC external/sdl2)
 target_link_libraries(swarm PUBLIC SDL2main SDL2 SDL2-static)
 #
 target_link_libraries(swarm PUBLIC particle)

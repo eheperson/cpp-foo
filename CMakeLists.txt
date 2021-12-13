@@ -23,6 +23,7 @@ set(LAB_DIR ${CMAKE_SOURCE_DIR}/lab)
 # ${PROJECT_NAME}
 project(cppFoo VERSION 1.0.0)
 
+option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 
 # Configure the header file to passs the version number to the source code
 configure_file(cppFooConfig.h.in cppFooConfig.h)
@@ -65,10 +66,9 @@ endif()
 target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
 
 #--------------------------------------------------------------------
-#-------------- SDL2 Submodules Settings
+#-------------- SDL2 Test
 add_executable(sdlTest src/sdlTest.cpp)
 #
-#--------------------------------------------------------------------
 add_subdirectory (src)
 #
 target_link_libraries(sdlTest PUBLIC sdlTestLib )
@@ -107,12 +107,32 @@ target_link_libraries(particleMotionBasic PUBLIC swarm)
 target_link_libraries(singlePixel PUBLIC screen)
 target_link_libraries(singlePixel PUBLIC particle)
 target_link_libraries(singlePixel PUBLIC swarm)
-
+#
+#--------------------------------------------------------------------
+#-------------- Shooter Game
+#
+add_executable(shooterGame ${LAB_DIR}/shooterGame/main.cpp)
+#
+add_custom_command(TARGET shooterGame PRE_BUILD         
+                   COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${LAB_DIR}/shooterGame/gfx ${CMAKE_CURRENT_BINARY_DIR}/gfx)
+#
+add_subdirectory (${LAB_DIR}/shooterGame)
+#
+target_link_libraries(shooterGame INTERFACE strutcs)
+target_link_libraries(shooterGame INTERFACE defs)
+target_link_libraries(shooterGame INTERFACE common)
+target_link_libraries(shooterGame PUBLIC draw)
+target_link_libraries(shooterGame PUBLIC init)
+target_link_libraries(shooterGame PUBLIC input)
+#
 #--------------------------------------------------------------------
 #-------------- DOWNLOAD ALL THE SUBMODULES
 # first open terminal and type : 
-#   git submodule add https://github.com/libsdl-org/SDL.git libs/sdl
-#   git submodule add -f https://github.com/libsdl-org/SDL.git libs/sdl
+#   git submodule add https://github.com/libsdl-org/SDL.git external/sdl2
+#   git submodule add -f https://github.com/libsdl-org/SDL.git external/sdl2
+#   git submodule add https://github.com/libsdl-org/SDL_image.git external/sdl_image
+#   git submodule add -f https://github.com/libsdl-org/SDL_image.git external/sdl_image
 # second add changes to staged area (we have to stage it)
 #  
 find_package(Git QUIET)
@@ -132,9 +152,18 @@ endif()
 #
 #--------------------------------------------------------------------
 #-------------- CHECK ALL THE SUBMODULES
+# Check SDL2 Module
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/sdl2/CMakeLists.txt")
     message(FATAL_ERROR "The sdl2 submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 #
+# Check SDL_Image Module
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/sdl_image/CMakeLists.txt")
+    message(FATAL_ERROR "The sdl_image submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+endif()
+#
 #--------------------------------------------------------------------
 add_subdirectory(${PROJECT_SOURCE_DIR}/external/sdl2)
+add_subdirectory(${PROJECT_SOURCE_DIR}/external/sdl_image)
+INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR})
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARY})
