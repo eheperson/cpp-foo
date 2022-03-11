@@ -1,5 +1,8 @@
 # build dir
-**/build
+**/build/
+
+# vscode settings
+.vscode/settings.json
 
 # external dir
 **/external

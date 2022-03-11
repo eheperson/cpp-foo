@@ -4,6 +4,8 @@
 - If you know the size of the data use `std::array`, if you don't use `std::vector`.
 - `std::array`'s are for fast access, `std::vector`'s are for dynamicly changing sizes.
 - `insert()` and `emplace()` is equal for premetive data-types but when we deal with heavy objects we should use `emplace()` if we can for efficiency.
+- You should use `std::forward_list` instead of `traditional single-linked-list`, because it is **well tested** and it has **bunch of available functions**.
+- If you want to use `unique()` method, you have to use `sort()` before using `unique()`, because `unique()` removes only adjacent-duplicates.
 
 ---
 

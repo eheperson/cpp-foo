@@ -8,6 +8,7 @@ set(CONTAINERS_DIR ${CMAKE_SOURCE_DIR}/modules/stl/containers)
 #
 add_executable(array ${CONTAINERS_DIR}/array.cpp)
 add_executable(vector ${CONTAINERS_DIR}/vector.cpp stlModule)
+add_executable(forwardList ${CONTAINERS_DIR}/forwardList.cpp)
 add_executable(set ${CONTAINERS_DIR}/set.cpp stlModule)
 add_executable(list ${CONTAINERS_DIR}/list.cpp stlModule)
 add_executable(stack ${CONTAINERS_DIR}/stack.cpp stlModule)
