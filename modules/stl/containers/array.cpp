@@ -21,6 +21,8 @@
 
     MODIFIERS : 
         - fill()
+        - insert() : 
+        - emplace() : used to construct object in-place and avoids unnecessary copy of objects
 */
 
 #include<iostream>
