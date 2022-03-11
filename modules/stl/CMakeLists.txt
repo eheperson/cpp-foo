@@ -6,6 +6,7 @@ add_library(StlModule stlModule.cxx)
 #
 set(CONTAINERS_DIR ${CMAKE_SOURCE_DIR}/modules/stl/containers)
 #
+add_executable(array ${CONTAINERS_DIR}/array.cpp)
 add_executable(vector ${CONTAINERS_DIR}/vector.cpp stlModule)
 add_executable(set ${CONTAINERS_DIR}/set.cpp stlModule)
 add_executable(list ${CONTAINERS_DIR}/list.cpp stlModule)
@@ -23,6 +24,7 @@ set(ALGORITHMS_DIR ${CMAKE_SOURCE_DIR}/modules/stl/algorithms)
 # #
 add_executable(vectorAlgorithms ${ALGORITHMS_DIR}/vectorAlgorithms.cpp stlModule)
 add_executable(listAlgorithms ${ALGORITHMS_DIR}/listAlgorithms.cpp stlModule)
+add_executable(common ${ALGORITHMS_DIR}/common.cpp stlModule)
 
 
 
