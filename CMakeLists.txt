@@ -32,6 +32,7 @@ configure_file(Config.h.in Config.h)
 # make the 'xxx' library optional
 # this option will be displayed in the cmake-gui and ccmake with a default value of ON
 option(BUILD_STL "Build cpp stl module tutorial files" ON)
+option(BUILD_LOOPS "Build cpp loops tutorial files" ON)
 option(BUILD_FILEOPERATIONS "Build cpp file operations module tutorial files" OFF)
 option(BUILD_CONST "Build cpp const keyword module tutorial files" OFF)
 option(BUILD_STRUCT "Build cpp structures module tutorial files" OFF)
@@ -52,6 +53,10 @@ endif()
 if(BUILD_TEMPLATES)
     add_subdirectory(${MODULES_DIR}/templates)
 endif()
+if(BUILD_LOOPS)
+    add_subdirectory(${MODULES_DIR}/loops)
+endif()
+
 
 # add the executable
 add_executable(${PROJECT_NAME} main.cxx)
