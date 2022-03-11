@@ -27,6 +27,14 @@ add_executable(listAlgorithms ${ALGORITHMS_DIR}/listAlgorithms.cpp stlModule)
 add_executable(common ${ALGORITHMS_DIR}/common.cpp stlModule)
 
 
+#
+# -------------------- E X A M P L E S -----------------------------
+#
+#
+set(EXAMPLES_DIR ${CMAKE_SOURCE_DIR}/modules/stl/examples)
+# #
+add_executable(emplace ${EXAMPLES_DIR}/emplace.cpp)
+
 
 
 # state that anybody linking to us needs to include the current source dir
