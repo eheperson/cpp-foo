@@ -1,5 +1,5 @@
 #include <iostream>
-#include "stl.h"
+#include "../StlModule.h"
 
 using namespace std;
 
@@ -122,7 +122,7 @@ int main(){
     v_deque.push_back(17);
     v_deque.push_back(19);
     dispVector(v_deque);
-    d.insert(d.begin(), &v[1], &v[3]);
+    d.insert(d.begin(), &v_deque[1], &v_deque[3]);
     dispDeque(d);
 
     cout << endl;

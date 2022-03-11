@@ -25,15 +25,13 @@ project(cppFoo VERSION 1.0.0)
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" OFF)
 
-# Configure the header file to passs the version number to the source code
-configure_file(cppFooConfig.h.in cppFooConfig.h)
-
-# add the executable
-add_executable(${PROJECT_NAME} main.cpp)
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file(Config.h.in Config.h)
 
 # make the 'xxx' library optional
 # this option will be displayed in the cmake-gui and ccmake with a default value of ON
-option(BUILD_STL "Build cpp stl module tutorial files" OFF)
+option(BUILD_STL "Build cpp stl module tutorial files" ON)
 option(BUILD_FILEOPERATIONS "Build cpp file operations module tutorial files" OFF)
 option(BUILD_CONST "Build cpp const keyword module tutorial files" OFF)
 option(BUILD_STRUCT "Build cpp structures module tutorial files" OFF)
@@ -42,128 +40,34 @@ option(BUILD_TEMPLATES "Build cpp templates module tutorial files" OFF)
 if(BUILD_STL)
     add_subdirectory(${MODULES_DIR}/stl)
 endif()
-
 if(BUILD_FILEOPERATIONS)
     add_subdirectory(${MODULES_DIR}/fileOperations)
 endif()
-
 if(BUILD_CONST)
     add_subdirectory(${MODULES_DIR}/const)
 endif()
-
 if(BUILD_STRUCT)
     add_subdirectory(${MODULES_DIR}/struct)
 endif()
-
 if(BUILD_TEMPLATES)
     add_subdirectory(${MODULES_DIR}/templates)
 endif()
 
+# add the executable
+add_executable(${PROJECT_NAME} main.cxx)
+
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC ${EXTRA_LIBS})
 
 # add the binary tree to the search path for include files
-# so that we will find exampleLib.h
-# (paths to search for include files)
-target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
+# so that we will find EnivicivokkiConfig.h
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC
+                           "${PROJECT_BINARY_DIR}"
+                           )
 
-#--------------------------------------------------------------------
-#-------------- SDL2 Test
-add_executable(sdlTest src/sdlTest.cpp)
-#
-add_subdirectory (src)
-#
-target_link_libraries(sdlTest PUBLIC sdlTestLib )
-#
-#--------------------------------------------------------------------
-#-------------- Particle Simulator 
-add_executable(simulatorEHE ${LAB_DIR}/particleSimulator/main.cpp)
-add_executable(colorAnimator ${LAB_DIR}/particleSimulator/colorAnimator.cpp)
-add_executable(particleExample ${LAB_DIR}/particleSimulator/particleExample.cpp)
-add_executable(particleExample2 ${LAB_DIR}/particleSimulator/particleExample2.cpp)
-add_executable(particleMotionBasic ${LAB_DIR}/particleSimulator/particleMotionBasic.cpp)
-add_executable(singlePixel ${LAB_DIR}/particleSimulator/singlePixel.cpp)
-#
-add_subdirectory (${LAB_DIR}/particleSimulator)
-#
-target_link_libraries(simulatorEHE PUBLIC screen)
-target_link_libraries(simulatorEHE PUBLIC particle)
-target_link_libraries(simulatorEHE PUBLIC swarm)
-#
-target_link_libraries(colorAnimator PUBLIC screen)
-target_link_libraries(colorAnimator PUBLIC particle)
-target_link_libraries(colorAnimator PUBLIC swarm)
-#
-target_link_libraries(particleExample PUBLIC screen)
-target_link_libraries(particleExample PUBLIC particle)
-target_link_libraries(particleExample PUBLIC swarm)
-#
-target_link_libraries(particleExample2 PUBLIC screen)
-target_link_libraries(particleExample2 PUBLIC particle)
-target_link_libraries(particleExample2 PUBLIC swarm)
-#
-target_link_libraries(particleMotionBasic PUBLIC screen)
-target_link_libraries(particleMotionBasic PUBLIC particle)
-target_link_libraries(particleMotionBasic PUBLIC swarm)
-#
-target_link_libraries(singlePixel PUBLIC screen)
-target_link_libraries(singlePixel PUBLIC particle)
-target_link_libraries(singlePixel PUBLIC swarm)
-#
-#--------------------------------------------------------------------
-#-------------- Shooter Game
-#
-add_executable(shooterGame ${LAB_DIR}/shooterGame/main.cpp)
-#
-add_custom_command(TARGET shooterGame PRE_BUILD         
-                   COMMAND ${CMAKE_COMMAND} -E copy_directory
-                   ${LAB_DIR}/shooterGame/gfx ${CMAKE_CURRENT_BINARY_DIR}/gfx)
-#
-add_subdirectory (${LAB_DIR}/shooterGame)
-#
-target_link_libraries(shooterGame INTERFACE strutcs)
-target_link_libraries(shooterGame INTERFACE defs)
-target_link_libraries(shooterGame INTERFACE common)
-target_link_libraries(shooterGame PUBLIC draw)
-target_link_libraries(shooterGame PUBLIC init)
-target_link_libraries(shooterGame PUBLIC input)
-#
-#--------------------------------------------------------------------
-#-------------- DOWNLOAD ALL THE SUBMODULES
-# first open terminal and type : 
-#   git submodule add https://github.com/libsdl-org/SDL.git external/sdl2
-#   git submodule add -f https://github.com/libsdl-org/SDL.git external/sdl2
-#   git submodule add https://github.com/libsdl-org/SDL_image.git external/sdl_image
-#   git submodule add -f https://github.com/libsdl-org/SDL_image.git external/sdl_image
-# second add changes to staged area (we have to stage it)
-#  
-find_package(Git QUIET)
-if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
-# Update submodules as needed
-    option(GIT_SUBMODULE "Check submodules during build" ON)
-    if(GIT_SUBMODULE)
-        message(STATUS "Submodule update")
-        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
-                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-                        RESULT_VARIABLE GIT_SUBMOD_RESULT)
-        if(NOT GIT_SUBMOD_RESULT EQUAL "0")
-            message(FATAL_ERROR "git submodule update --init failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
-        endif()
-    endif()
-endif()
-#
-#--------------------------------------------------------------------
-#-------------- CHECK ALL THE SUBMODULES
-# Check SDL2 Module
-if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/sdl2/CMakeLists.txt")
-    message(FATAL_ERROR "The sdl2 submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
-endif()
-#
-# Check SDL_Image Module
-if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/sdl_image/CMakeLists.txt")
-    message(FATAL_ERROR "The sdl_image submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
-endif()
-#
-#--------------------------------------------------------------------
-add_subdirectory(${PROJECT_SOURCE_DIR}/external/sdl2)
-add_subdirectory(${PROJECT_SOURCE_DIR}/external/sdl_image)
-INCLUDE_DIRECTORIES(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR})
-TARGET_LINK_LIBRARIES(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARY})
+# ---------------------- Installing Begin ----------------------
+# add the install targets
+install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/Config.h"
+  DESTINATION include
+  )
+# ---------------------- Installing End ------------------------

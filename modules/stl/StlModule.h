@@ -1,5 +1,5 @@
-#ifndef STL_H
-#define STL_H
+#ifndef STLMODULE_H
+#define STLMODULE_H
 
 #include <cmath>
 #include <cstdlib>
@@ -18,11 +18,13 @@
 #include<map>
 #include<bitset>
 
+#include <algorithm>
+#include <numeric> //For accumulate operation, iota()
 
 using namespace std;
 
 // Declare `temp`. Doesn't need to include `foo.cpp`
-extern foo<MyType> temp;
+// extern foo<MyType> temp;
 
 template <typename T>
 T squareRoot(T n){

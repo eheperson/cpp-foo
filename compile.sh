@@ -4,17 +4,17 @@ cowsay "hello motherfucker"
 buildDIR="./build"
 
 # delete and re-create build directory at every time
-# if [ ! -d ${buildDIR} ]; then
-#   mkdir ${buildDIR}
-# else
-#   rm -r ${buildDIR}
-#   mkdir ${buildDIR}
-# fi
-
-# create build dir if dows not exists
 if [ ! -d ${buildDIR} ]; then
   mkdir ${buildDIR}
+else
+  rm -r ${buildDIR}
+  mkdir ${buildDIR}
 fi
+
+# create build dir if dows not exists
+# if [ ! -d ${buildDIR} ]; then
+#   mkdir ${buildDIR}
+# fi
 
 # -----------------------------------
 #       CONFIGURE
@@ -49,18 +49,18 @@ echo ""
 echo " Build End"
 echo ""
 
-# -----------------------------------
-#       RUN
-# -----------------------------------
-echo ""
-echo " Run Begin"
-echo ""
+# # -----------------------------------
+# #       RUN
+# # -----------------------------------
+# echo ""
+# echo " Run Begin"
+# echo ""
 
-cd build
-# ./cppFoo "Mr. Anderson"
-./cppFoo
-cd ..
+# cd build
+# # ./cppFoo "Mr. Anderson"
+# ./cppFoo
+# cd ..
 
-echo ""
-echo " Run End"
-echo ""
+# echo ""
+# echo " Run End"
+# echo ""
