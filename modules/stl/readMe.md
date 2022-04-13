@@ -8,6 +8,7 @@
 - If you want to use `unique()` method, you have to use `sort()` before using `unique()`, because `unique()` removes only adjacent-duplicates.
 - `std::list()` is faster compared to other sequence containers `std::vector`, `std::forward_list`, `std::deque` in terms of `insertion`, `removal`, `moving elements` in any position provided we have the `iterator` of the position.
 - You should use `std::list` instead of `traditional doubly-linked-list`, because it is **well tested** and it has **bunch of available functions**. 
+- `std::map` keys should be unique, otherwise it overrides previous the previous value.
 
 ---
 
