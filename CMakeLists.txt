@@ -37,7 +37,11 @@ option(BUILD_FILEOPERATIONS "Build cpp file operations module tutorial files" OF
 option(BUILD_CONST "Build cpp const keyword module tutorial files" OFF)
 option(BUILD_STRUCT "Build cpp structures module tutorial files" OFF)
 option(BUILD_TEMPLATES "Build cpp templates module tutorial files" OFF)
+option(BUILD_LAMBDA "Build cpp lambda expressions module tutorial files" ON)
 
+if(BUILD_LAMBDA)
+    add_subdirectory(${MODULES_DIR}/lambdaExpressions)
+endif()
 if(BUILD_STL)
     add_subdirectory(${MODULES_DIR}/stl)
 endif()
