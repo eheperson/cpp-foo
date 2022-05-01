@@ -73,6 +73,10 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "utility": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "any": "cpp",
+        "memory_resource": "cpp",
+        "scoped_allocator": "cpp",
+        "variant": "cpp"
     }
 }
