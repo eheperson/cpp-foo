@@ -45,5 +45,49 @@ race conditions.
 ## nullptr (C++11)
 
 * `nullptr` represents a pointer that does not point to any object: `int* p = nullptr;`
+
 * Before C++11, the `NULL` identifier was meant to be used for pointers. But this situation was a big problem and it has been solved by `nullptr` after C++11.
 
+    * The problem with NULL was exactly this: 
+        * `NULL` was defined as `0` , which is an integer type, and used by the pre-processor (which
+        was replacing all the occurrences of NULL with 0 ). 
+        * This is a huge difference as `nullptr` is now among the C++ primitives types and managed by the compiler.
+For the second program, the speedUp (overloaded) method is called with the char*
+pointer to nullptr . T
+
+
+---
+
+## smart_pointers (C++11)
+
+* These smart pointers are the main helpers for programmers who don't want to deal with memory deallocation manually.
+* Most common of smart pointers : 
+    * `unique_ptr`
+    * `shared ptr`
+
+> make_unique is an upcoming C++14 feature.
+### unique_pointer
+
+* It is a smart pointer that embodies the concept of unique ownership.
+* Unique ownership, simply put, means that there is one and only one variable that can own a pointer.
+
+* The copy operator is not allowed on unique pointer variables. 
+* Just move is allowed, where the ownership is transferred from one variable to another.
+
+* unique_ptr is as big as a raw pointer 
+
+> The fact that the developer doesn't need to bother remembering to call delete when needed, but still keep control over memory, is one of the main advantages of C++ over garbage collector-based languages.
+### shared_ptr
+
+* The shared_ptr smart pointer represents the concept that an object is being pointed at (that is, by the owner) by more than one variable. 
+* In this case, we're talking about shared ownership.
+* An object cannot be released until at least one variable is using it.
+
+
+* the `shared_ptr` data type has a concept of reference counting to keep track of the number of pointers. 
+    * These references are increased during the constructors (not always; the move constructor isn't) 
+    * and the copy assignment operator and decreased in the destructors.
+
+* shared_ptr is typically double the size of unique_ptr because of the reference counting variable.
+
+> Can the reference counting variable be safely increased and decreased? The pointers to the same object might be in different threads, so manipulating this variable might be an issue. This is not an issue as the reference counting variable is atomically managed (that is, it is an atomic variable).
