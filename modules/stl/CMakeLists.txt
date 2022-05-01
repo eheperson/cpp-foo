@@ -1,4 +1,4 @@
-add_library(StlModule stlModule.cxx)
+add_library(StlModule StlModule.cxx)
 
 
 #
@@ -11,11 +11,11 @@ add_executable(vector ${CONTAINERS_DIR}/vector.cpp)
 add_executable(forwardList ${CONTAINERS_DIR}/forwardList.cpp)
 add_executable(list ${CONTAINERS_DIR}/list.cpp)
 add_executable(map ${CONTAINERS_DIR}/map.cpp)
-add_executable(set ${CONTAINERS_DIR}/set.cpp stlModule)
-add_executable(stack ${CONTAINERS_DIR}/stack.cpp stlModule)
-add_executable(queue ${CONTAINERS_DIR}/queue.cpp stlModule)
-add_executable(deque ${CONTAINERS_DIR}/deque.cpp stlModule)
-add_executable(prioryQueue ${CONTAINERS_DIR}/priorityQueue.cpp stlModule)
+add_executable(set ${CONTAINERS_DIR}/set.cpp StlModule)
+add_executable(stack ${CONTAINERS_DIR}/stack.cpp StlModule)
+add_executable(queue ${CONTAINERS_DIR}/queue.cpp StlModule)
+add_executable(deque ${CONTAINERS_DIR}/deque.cpp StlModule)
+add_executable(prioryQueue ${CONTAINERS_DIR}/priorityQueue.cpp StlModule)
 
 
 #
@@ -24,9 +24,9 @@ add_executable(prioryQueue ${CONTAINERS_DIR}/priorityQueue.cpp stlModule)
 #
 set(ALGORITHMS_DIR ${CMAKE_SOURCE_DIR}/modules/stl/algorithms)
 # #
-add_executable(vectorAlgorithms ${ALGORITHMS_DIR}/vectorAlgorithms.cpp stlModule)
-add_executable(listAlgorithms ${ALGORITHMS_DIR}/listAlgorithms.cpp stlModule)
-add_executable(common ${ALGORITHMS_DIR}/common.cpp stlModule)
+add_executable(vectorAlgorithms ${ALGORITHMS_DIR}/vectorAlgorithms.cpp StlModule)
+add_executable(listAlgorithms ${ALGORITHMS_DIR}/listAlgorithms.cpp StlModule)
+add_executable(common ${ALGORITHMS_DIR}/common.cpp StlModule)
 
 
 #

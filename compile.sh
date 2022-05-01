@@ -1,4 +1,5 @@
-apt-get install cowsay
+#!/bin/bash
+# apt-get install cowsay
 cowsay "hello motherfucker"
 
 buildDIR="./build"
