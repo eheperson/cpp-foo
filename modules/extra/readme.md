@@ -91,3 +91,18 @@ pointer to nullptr . T
 * shared_ptr is typically double the size of unique_ptr because of the reference counting variable.
 
 > Can the reference counting variable be safely increased and decreased? The pointers to the same object might be in different threads, so manipulating this variable might be an issue. This is not an issue as the reference counting variable is atomically managed (that is, it is an atomic variable).
+
+---
+
+## move semantic (C++11)
+
+* We know copies are expensive, especially heavy objects. The move semantics help us avoid expensive copies.
+* The foundational concept behind `std::move` and `std::forward` is the rvalue reference.
+
+> std::move doesn't actually move anything – it is a function template that performs an unconditional cast to an rvalue, as we saw in the first example. This allows us to move (and not copy) the data to the destination and invalidate the source.
+
+
+> The benefits of std::move are huge, especially every time we see an rvalue reference parameter to a method ( T&& ) that would probably* be a copy in the previous versions of the language (C++98 and before).(*Probably: it depends on compiler optimizations.)
+
+
+*  `std::forward` is somewhat similar (but with a different purpose). It is a conditional cast to an rvalue reference. 
