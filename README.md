@@ -48,3 +48,14 @@ Package the project
 ```bash
 cpack .\out\build  -c Debug --verbose
 ```
+
+### One shot commands
+#### Linux/Unix
+```bash
+cmake -DCMAKE_INSTALL_PREFIX=out/app -S . -B out/build ; cmake --build ./out/build -j 12 -v ; ./out/build/src/cppfoo ; sudo rm -rf out/
+```
+
+#### Windows
+```bash
+cmake -DCMAKE_INSTALL_PREFIX=out\app -S . -B out\build && cmake --build .\out\build -j 12 -v && .\out\build\src\cppfoo && rmdir /S /Q out\
+```
