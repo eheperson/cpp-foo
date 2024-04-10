@@ -6,3 +6,6 @@ target_include_directories(arrays PRIVATE ${CMAKE_BINARY_DIR})
 
 add_executable(structures structures.cpp)
 target_include_directories(structures PRIVATE ${CMAKE_BINARY_DIR})
+
+add_executable(pointers pointers.cpp)
+target_include_directories(pointers PRIVATE ${CMAKE_BINARY_DIR})
