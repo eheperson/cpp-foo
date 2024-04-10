@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16...3.29 FATAL_ERROR)
 
 project(
-  rppm
+  cppfoo
   VERSION 1.0.0
   DESCRIPTION "Rec-Play-Pause for small projects"
   LANGUAGES CXX
@@ -30,11 +30,11 @@ if("${isSystemDir}" STREQUAL "-1")
     set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 endif("${isSystemDir}" STREQUAL "-1")
 
-configure_file(rppmConfig.h.in ${CMAKE_BINARY_DIR}/rppmConfig.h)
+configure_file(cppfooConfig.h.in ${CMAKE_BINARY_DIR}/cppfooConfig.h)
 add_subdirectory(src)
 
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION bin)
-install(FILES "${PROJECT_BINARY_DIR}/rppmConfig.h" DESTINATION include)
+install(FILES "${PROJECT_BINARY_DIR}/cppfooConfig.h" DESTINATION include)
 
 set(CPACK_PACKAGE_VENDOR "eheperson")
 set(CPACK_SYSTEM_NAME "enivicivokki")

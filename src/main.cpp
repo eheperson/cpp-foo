@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include <rppmConfig.h>
+#include <cppfooConfig.h>
 
 
 int main(int argc, char** argv){
