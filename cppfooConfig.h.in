@@ -1,9 +1,6 @@
 
 // the configured options and settings for development environment
 
-#define cppfooConfig_VERSION_MAJOR @cppfooConfig_VERSION_MAJOR@
-#define cppfooConfig_VERSION_MINOR @cppfooConfig_VERSION_MINOR@
-#define cppfooConfig_VERSION_PATCH @cppfooConfig_VERSION_PATCH@
-/* When cmake configures this header file thevalues for 
-@TexampleLib_VERSION_MAJOR@ and @exampleLib_VERSION_MINOR@ will be replaced. */
-
+#define cppfoo_VERSION_MAJOR @cppfoo_VERSION_MAJOR@
+#define cppfoo_VERSION_MINOR @cppfoo_VERSION_MINOR@
+#define cppfoo_VERSION_PATCH @cppfoo_VERSION_PATCH@

@@ -52,10 +52,10 @@ cpack .\out\build  -c Debug --verbose
 ### One shot commands
 #### Linux/Unix
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX=out/app -S . -B out/build ; cmake --build ./out/build -j 12 -v ; ./out/build/src/cppfoo ; sudo rm -rf out/
+cmake -DCMAKE_INSTALL_PREFIX=out/app -S . -B out/build ; cmake --build ./out/build -j 12 -v
 ```
 
 #### Windows
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX=out\app -S . -B out\build && cmake --build .\out\build -j 12 -v && .\out\build\src\cppfoo && rmdir /S /Q out\
+cmake -DCMAKE_INSTALL_PREFIX=out\app -S . -B out\build && cmake --build .\out\build -j 12 -v
 ```
