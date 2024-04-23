@@ -25,8 +25,9 @@ target_include_directories(template_class PRIVATE ${CMAKE_BINARY_DIR})
 add_executable(template_function template_function.cpp)
 target_include_directories(template_function PRIVATE ${CMAKE_BINARY_DIR})
 
-add_executable(prac_pointer_to_struct practices/pointer_to_struct.cpp)
-target_include_directories(prac_pointer_to_struct PRIVATE ${CMAKE_BINARY_DIR})
+add_executable(strings strings.cpp)
+target_include_directories(strings PRIVATE ${CMAKE_BINARY_DIR})
 
-add_executable(prac_array_as_parameter practices/array_as_parameter.cpp)
-target_include_directories(prac_array_as_parameter PRIVATE ${CMAKE_BINARY_DIR})
+add_subdirectory(practices)
+add_subdirectory(design-paradigms)
+add_subdirectory(adt)

@@ -48,5 +48,14 @@ int main(int argc, char** argv){
     }
     cout << endl << endl;
 
+
+    /* array declaration types */
+    int Arr[5];                         // uninitialized
+    int Arr2[5] = {1, 2, 3, 4, 5};      // initialized 
+    int Arr4[] = {1, 2, 3, 4, 5};       // size is determined by the number of elements
+    int Arr3[5] = {0};                  // all elements are initialized to 0
+    int Arr5[5] = {0, 1, 2};            // first three elements are initialized to 0, 1, 2, the rest are initialized to 0
+    // int Arr6[5] = {0, 1, 2, 3, 4, 5};   // error: too many initializers
+
     return 0;
 }
